@@ -19,7 +19,7 @@ export const OrderSummary = () => {
         <div className="grid grid-cols-2">
 
             <span>N° Productos</span>
-            <span className="text-right">{itemsInCart === 1 ? '1 articulo.' : `${itemsInCart} articulos.`}</span>
+            <span className="text-right">{itemsInCart === 1 ? '1 articulo' : `${itemsInCart} articulos`}</span>
 
             <span>Subtotal</span>
             <span className="text-right"> {currencyFormat(subTotal)}</span>
@@ -27,8 +27,8 @@ export const OrderSummary = () => {
             <span>Iva (19%)</span>
             <span className="text-right">{currencyFormat(iva)}</span>
 
-            <span className="text-2xl mt-5">Total a Pagar:</span>
-            <span className="mt-5 text-2xl text-right"> {currencyFormat(total)}</span>
+            <span className="text-xl md:text-2xl mt-5 font-semibold">Total a Pagar:</span>
+            <span className="mt-5 text-xl md:text-2xl text-right font-semibold"> {currencyFormat(total)}</span>
 
         </div>
     )

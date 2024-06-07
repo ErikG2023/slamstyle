@@ -1,5 +1,6 @@
 import { getOrderById } from "@/actions/order/get-order-by-id";
 import { Title } from "@/components/Title";
+import { currencyFormat } from "@/utils";
 import clsx from "clsx";
 import Image from "next/image";
 import { redirect } from "next/navigation";
@@ -102,8 +103,9 @@ export default async function OrderByIdPage({ params }: Props) {
                             <span>Iva</span>
                             <span className="text-right">{order?.iva} %</span>
 
-                            <span className="text-2xl mt-5">Total:</span>
-                            <span className="mt-5 text-2xl text-right">$ {order?.total}</span>
+
+                            <span className="text-xl md:text-2xl mt-5 font-semibold">Total a Pagar:</span>
+                            <span className="mt-5 text-xl md:text-2xl text-right font-semibold"> {currencyFormat(order?.total as number)}</span>
 
                         </div>
 
