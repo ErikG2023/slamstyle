@@ -7,7 +7,7 @@ const resend = new Resend(
 
 
 export const sendVerificationEmail = async(email:string,token:string) =>{
-    const confirmLink = `http://localhost:3000/auth/new-verification?token=${token}`;
+    const confirmLink = `https://slamstyle.vercel.app/auth/new-verification?token=${token}`;
     console.log("Sent mail from here")
     await resend.emails.send({
         from:"onboarding@resend.dev",
@@ -27,7 +27,7 @@ export const sendTwoFactorEmail = async(email:string,token:string) => {
 }
 
 export const sendPasswordResetEmail = async(email:string,token:string) => {
-    const resetLink = `http://localhost:3000/auth/new-password?token=${token}`
+    const resetLink = `https://slamstyle.vercel.app/auth/new-password?token=${token}`
     await resend.emails.send({
         from:"onboarding@resend.dev",
         to:email,
