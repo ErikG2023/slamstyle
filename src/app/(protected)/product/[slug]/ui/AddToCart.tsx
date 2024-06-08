@@ -1,10 +1,10 @@
 "use client"
 import { CartProduct, ProductInterface, Size } from "@/interfaces";
-import { SizeSelector } from "./SizeSelector";
 import { useState } from "react";
-import { QuantitySelector } from "./QuantitySelector";
 import { toast } from "react-toastify";
 import { useCartStore } from "@/store/cart-store";
+import { SizeSelector } from "@/components/products/SizeSelector";
+import { QuantitySelector } from "@/components/products/QuantitySelector";
 
 interface Props {
     product: ProductInterface;
