@@ -16,10 +16,10 @@ export default function CartPage() {
                 <Title title="Carrito" />
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-10">
                     {/* CARRITO */}
-                    <div className="flex flex-col mt-5">
-                        <span className="text-xl">Agregar mas items</span>
-                        <Link href="/" className="underline mb-5" >
-                            Continuar comprando
+                    <div className="flex flex-col">
+                        {/* <span className="text-xl mb-4">Agregar mas items</span> */}
+                        <Link href="/" className="btn  mb-5" >
+                        Agregar mas Productos
                         </Link>
 
                         {/* ITEMS */}
@@ -30,7 +30,7 @@ export default function CartPage() {
 
                     {/* RESUMEN ORDEN */}
 
-                    <div className="bg-white rounded-xl shadow-xl p-7 h-fit">
+                    <div className=" rounded-xl p-7 h-fit">
                         <h2 className="text-2xl mb-2">Resumen pedido</h2>
 
                         <OrderSummary />

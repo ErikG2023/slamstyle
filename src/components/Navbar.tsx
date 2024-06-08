@@ -14,6 +14,15 @@ export const NavbarComponent = () => {
     const { status } = useSession();
     const user = useCurrentUser();
     const router = useRouter();
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+    const toggleDropdown = () => {
+        setIsDropdownOpen(!isDropdownOpen);
+    };
+
+    const closeDropdown = () => {
+        setIsDropdownOpen(false);
+    };
 
     const totalItemsInCart = useCartStore(state => state.getTotalItems());
     const { itemsInCart, iva, subTotal, total } = useCartStore(state => state.getSumaryInformation())
@@ -61,9 +70,9 @@ export const NavbarComponent = () => {
             {/* DESKTOP */}
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
-                <li><Link href="/gender/men">Hombres</Link></li>
-                        <li><Link href="/gender/women">Mujeres</Link></li>
-                        <li><Link href="/gender/kid">Niños</Link></li>
+                    <li><Link href="/gender/men">Hombres</Link></li>
+                    <li><Link href="/gender/women">Mujeres</Link></li>
+                    <li><Link href="/gender/kid">Niños</Link></li>
                     {/* <li>
                         <details>
                             <summary>Parent</summary>
@@ -79,35 +88,35 @@ export const NavbarComponent = () => {
                 <div className="flex-none">
 
                     {/* ICONO CARRITO */}
-                    <div className="dropdown dropdown-end">
+                    <div className="dropdown dropdown-end" onClick={toggleDropdown}>
                         <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
-                            {
-                                (loaded ) && (
-                                    <div className="indicator">
-                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
-                                        <span className="badge badge-info badge-sm indicator-item text-white">{totalItemsInCart === 0 ? '0' : `${totalItemsInCart}`}</span>
-                                    </div>
-                                )
-                            }
+                            {loaded && (
+                                <div className="indicator">
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                                    </svg>
+                                    <span className="badge badge-info badge-sm indicator-item text-white">{totalItemsInCart === 0 ? '0' : `${totalItemsInCart}`}</span>
+                                </div>
+                            )}
                         </div>
-                        {
-                            (loaded && totalItemsInCart > 0) && (
-                                <div tabIndex={0} className="mt-3 z-[1] card card-compact dropdown-content w-52 bg-base-100 shadow">
-                                    <div className="card-body">
-                                        <span className="font-bold text-lg">{itemsInCart === 1 ? '1 articulo' : `${itemsInCart} articulos`}</span>
-                                        <span className="text-info">Subtotal: ${subTotal}</span>
-                                        <div className="card-actions">
-                                            {/* <Link href="/cart" className="btn btn-primary btn-block">Ver Carrito</Link>
-                                             */}
-                                            <Link href="/cart" className="btn btn-sm bg-indigo-600 hover:bg-indigo-500 focus:outline-none transition text-white w-full">
-                                                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
+                        {loaded && totalItemsInCart > 0 && isDropdownOpen && (
+                            <div tabIndex={0} className="mt-3 z-[1] card card-compact dropdown-content w-52 bg-base-100 shadow">
+                                <div className="card-body">
+                                    <span className="font-bold text-lg">{itemsInCart === 1 ? '1 artículo' : `${itemsInCart} artículos`}</span>
+                                    <span className="text-info">Subtotal: ${subTotal}</span>
+                                    <div className="card-actions">
+                                        <Link href="/cart">
+                                            <button className="btn btn-sm bg-indigo-600 hover:bg-indigo-500 focus:outline-none transition text-white w-full" onClick={closeDropdown}>
+                                                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                                                </svg>
                                                 Ver Carrito
-                                            </Link>
-                                        </div>
+                                            </button>
+                                        </Link>
                                     </div>
                                 </div>
-                            )
-                        }
+                            </div>
+                        )}
                     </div>
 
                     <div className="dropdown dropdown-end">
