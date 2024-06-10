@@ -10,6 +10,8 @@ const url = process.env.NEXTAUTH_URL;
 
 export const sendVerificationEmail = async(email:string,token:string) =>{
     const confirmLink = `${url}/auth/new-verification?token=${token}`;
+    console.log(confirmLink);
+    
     console.log("Sent mail from here")
     await resend.emails.send({
         from:"onboarding@resend.dev",
