@@ -55,14 +55,6 @@ export const NavbarComponent = () => {
                         <li><Link href="/gender/men">Hombres</Link></li>
                         <li><Link href="/gender/women">Mujeres</Link></li>
                         <li><Link href="/gender/kid">Niños</Link></li>
-
-                        {/* <li>
-                            <a>Parent</a>
-                            <ul className="p-2">
-                                <li><a>Submenu 1</a></li>
-                                <li><a>Submenu 2</a></li>
-                            </ul>
-                        </li> */}
                     </ul>
                 </div>
                 <Link href="/" className="btn btn-ghost text-xl">SlamStyle</Link>
