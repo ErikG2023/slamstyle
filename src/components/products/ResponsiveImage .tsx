@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
+import { useSwipeable } from 'react-swipeable';
 
 type ImageType = {
     src: string;
@@ -10,15 +11,11 @@ type ImageType = {
 
 type CarouselProps = {
     images: ImageType[];
-    autoplayInterval?: number; // Tiempo en milisegundos
+    autoplayInterval?: number;
 };
 
 const Carousel = ({ images, autoplayInterval = 3000 }: CarouselProps) => {
     const [currentIndex, setCurrentIndex] = useState(0);
-
-    const handleSelectImage = (index: number) => {
-        setCurrentIndex(index);
-    };
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -26,10 +23,23 @@ const Carousel = ({ images, autoplayInterval = 3000 }: CarouselProps) => {
         }, autoplayInterval);
 
         return () => clearInterval(interval);
-    }, [images.length, autoplayInterval]);
+    }, [autoplayInterval, images.length]);
+
+    const handlers = useSwipeable({
+        onSwipedLeft: () => handleNext(),
+        onSwipedRight: () => handlePrev(),
+    });
+
+    const handleNext = () => {
+        setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+    };
+
+    const handlePrev = () => {
+        setCurrentIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
+    };
 
     return (
-        <div className="relative w-full mb-4 overflow-hidden">
+        <div {...handlers} className="relative w-full mb-4 overflow-hidden">
             <div className="relative w-full h-[20vh] sm:h-[40vh] md:h-[40vh] lg:h-[50vh] xl:h-[60vh]">
                 {images.map((image, index) => (
                     <div
@@ -49,16 +59,14 @@ const Carousel = ({ images, autoplayInterval = 3000 }: CarouselProps) => {
                     </div>
                 ))}
             </div>
-            {/* Fondo degradado en la parte inferior */}
             <div className="absolute inset-x-0 bottom-0 h-24 md:h-64 bg-gradient-to-t from-black/30 to-transparent pointer-events-none"></div>
             <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
-                {/* Botones de navegación */}
                 {images.map((_, index) => (
                     <button
                         key={index}
                         className={`w-2 h-2 md:h-3.5 md:w-3.5 rounded-full ${currentIndex === index ? 'bg-blue-500' : 'bg-gray-300'
                             }`}
-                        onClick={() => handleSelectImage(index)}
+                        onClick={() => setCurrentIndex(index)}
                     ></button>
                 ))}
             </div>
