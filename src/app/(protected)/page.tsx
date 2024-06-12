@@ -5,8 +5,7 @@ import { getPaginatedProductsWithImages } from "@/actions/products/product-pagin
 import { Pagination } from "@/components/Pagination";
 import { Title } from "@/components/Title";
 import { ProductGrid } from "@/components/products/ProductGrid";
-import ResponsiveBannerCarousel from "@/components/products/ResponsiveBannerCarousel";
-import ResponsiveCarousel from "@/components/products/ResponsiveCarousel";
+import ResponsiveImage from "@/components/products/ResponsiveImage ";
 import { redirect } from "next/navigation";
 
 interface Props {
@@ -21,6 +20,14 @@ export default async function Home({ searchParams }: Props) {
 
   const { products, totalPages, currentPage } = await getPaginatedProductsWithImages({ page });
 
+  const images = [
+    { src: '/banner/1.jpg', alt: 'Descripción de la imagen 1' },
+    { src: '/banner/2.jpg', alt: 'Descripción de la imagen 2' },
+    { src: '/banner/3.jpg', alt: 'Descripción de la imagen 3' },
+    { src: '/banner/4.jpg', alt: 'Descripción de la imagen 4' },
+  ];
+
+
 
   if (products.length === 0) {
     redirect('/')
@@ -29,8 +36,7 @@ export default async function Home({ searchParams }: Props) {
 
   return (
     <>
-    {/* <ResponsiveCarousel /> */}
-    <ResponsiveBannerCarousel />
+      <ResponsiveImage images={images} autoplayInterval={3000} />
       <Title title="Tienda" subtitle="Todos los productos" classname="mb-2" />
 
       <ProductGrid products={products} />
