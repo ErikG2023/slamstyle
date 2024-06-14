@@ -66,7 +66,7 @@ export const PlaceOrder = () => {
     }
     return (
         <div>
-            <div className="bg-white rounded-xl shadow-xl p-7">
+            <div className="p-7">
                 <h2 className="text-2xl mb-2">Direccion de entrega</h2>
                 {selectedAddress && (
                     <div className="mb-10">

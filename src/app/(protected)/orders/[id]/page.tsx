@@ -1,10 +1,10 @@
 import { getOrderById } from "@/actions/order/get-order-by-id";
+import { BotonPago } from "@/components/BotonPago";
 import { Title } from "@/components/Title";
 import { currencyFormat } from "@/utils";
 import clsx from "clsx";
 import Image from "next/image";
 import { redirect } from "next/navigation";
-import { FaRegCreditCard } from "react-icons/fa";
 import { IoCartOutline } from "react-icons/io5";
 
 
@@ -111,7 +111,7 @@ export default async function OrderByIdPage({ params }: Props) {
 
                         <div className="mt-5 mb-2 w-full">
 
-                            <button className="btn btn-block btn-accent text-white"><FaRegCreditCard size={15} />Pasarela de pago</button>
+                            <BotonPago amount={5000} buy_order={id} session_id="erik"/>
 
                         </div>
 

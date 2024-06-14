@@ -108,13 +108,13 @@ enum Gender {
 }
 
 model Category {
-  id      String    @id @default(uuid())
+  id      String    @id @default(cuid())
   name    String    @unique
   Product Product[]
 }
 
 model Product {
-  id          String   @id @default(uuid())
+  id          String   @id @default(cuid())
   title       String
   description String
   inStock     Int
@@ -140,7 +140,7 @@ model ProductImage {
 }
 
 model Region {
-  id        String    @id @default(uuid())
+  id        String    @id @default(cuid())
   name      String    @unique
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
@@ -149,7 +149,7 @@ model Region {
 }
 
 model City {
-  id        String    @id @default(uuid())
+  id        String    @id @default(cuid())
   name      String    @unique
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
@@ -159,7 +159,7 @@ model City {
 }
 
 model Address {
-  id         String   @id @default(uuid())
+  id         String   @id @default(cuid())
   name       String
   address    String
   postalCode String
@@ -175,7 +175,7 @@ model Address {
 }
 
 model Order {
-  id           String    @id @default(uuid())
+  id           String    @id @default(cuid())
   subTotal     Float
   iva          Float
   total        Float
@@ -195,7 +195,7 @@ model Order {
 }
 
 model OrderItem {
-  id       String @id @default(uuid())
+  id       String @id @default(cuid())
   quantity Int
   price    Float
   size     Size

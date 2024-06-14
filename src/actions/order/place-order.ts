@@ -1,7 +1,6 @@
 "use server";
 
 import { Size } from "@/interfaces";
-import { AddressData } from "@/interfaces/address.interface";
 import prisma from "@/lib/db";
 
 interface ProductToOrder {

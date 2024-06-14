@@ -3,8 +3,6 @@ import { ProductsInCart } from "./ui/ProductsInCart";
 import { OrderSummary } from "./ui/OrderSummary";
 import { Title } from "@/components/Title";
 
-
-
 export default function CartPage() {
 
     // redirect('/empty');
