@@ -17,13 +17,13 @@ export default function CartPage() {
                     <div className="flex flex-col">
                         {/* <span className="text-xl mb-4">Agregar mas items</span> */}
                         <Link href="/" className="btn  mb-5" >
-                        Agregar mas Productos
+                            Agregar mas Productos
                         </Link>
 
                         {/* ITEMS */}
 
                         <ProductsInCart />
-                        
+
                     </div>
 
                     {/* RESUMEN ORDEN */}
@@ -33,10 +33,18 @@ export default function CartPage() {
 
                         <OrderSummary />
 
-                        <div className="mt-5 mb-2 w-full">
-                            <Link href="/checkout/address" className="flex btn btn-primary justify-center">
+                        <div className="hidden md:flex mt-5 mb-2 md:w-full">
+                            <Link href="/checkout/address" className="btn  border-none rounded-md bg-indigo-600 hover:bg-indigo-500 focus:outline-none transition text-white uppercase w-full">
                                 Continuar
                             </Link>
+                        </div>
+
+                        <div className="relative">
+                            <div className="fixed bottom-0 left-0 right-0 md:hidden">
+                                <Link href="/checkout/address" className="btn  border-none rounded-none bg-indigo-600 hover:bg-indigo-500 focus:outline-none transition text-white uppercase w-full">
+                                    Continuar
+                                </Link>
+                            </div>
                         </div>
 
                     </div>

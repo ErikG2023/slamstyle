@@ -37,7 +37,18 @@ export const BotonPago = ({ amount, buy_order, session_id }: Props) => {
     };
     return (
         <>
-            <button onClick={handlePayment} disabled={loading} className="btn btn-block btn-accent text-white"><FaRegCreditCard size={15} />Pagar</button>
+            <div className="relative">
+                <div className="gap-0.5 mt-8 md:mt-8 hidden md:flex">
+                    <button onClick={handlePayment} disabled={loading} className="btn btn-block border-none btn-accent text-white"><FaRegCreditCard size={15} />Pagar</button>
+
+                </div>
+                <div className="fixed bottom-0 left-0 right-0 md:hidden">
+                    {/* <button onClick={handlePayment} disabled={loading} className="btn btn-block btn-accent text-white"><FaRegCreditCard size={15} />Pagar</button> */}
+                    <button onClick={handlePayment} disabled={loading} className="btn border-none rounded-none btn-accent focus:outline-none transition text-white uppercase w-full">
+                    <FaRegCreditCard size={15} />Pagar
+                        </button>
+                </div>
+            </div>
         </>
     )
 }

@@ -37,8 +37,8 @@ export const PlaceOrder = () => {
         const userId = session?.user.id;
         const addresId = selectedAddress?.id;
 
-        console.log({productsToOrder,userId,addresId});
-        
+        console.log({ productsToOrder, userId, addresId });
+
 
         const res = await placeOrder(productsToOrder, userId as string, addresId);
 
@@ -70,8 +70,6 @@ export const PlaceOrder = () => {
                 <h2 className="text-2xl mb-2">Direccion de entrega</h2>
                 {selectedAddress && (
                     <div className="mb-10">
-                        {/* <p>Nombre: {selectedAddress.id}</p> */}
-                        {/* <p>Nombre: {selectedAddress.name}</p> */}
                         <p>{selectedAddress.region.name}</p>
                         <p>{selectedAddress.city.name}</p>
                         <p>{selectedAddress.address}</p>
@@ -84,22 +82,22 @@ export const PlaceOrder = () => {
 
                 <OrderSummaryCheck />
 
-                <div className="mt-5 mb-2 w-full">
-
-                    {/* <p className="text-red-500">Error de Creacion</p> */}
-
-                    <button
-                        // href="/orders/123" 
-                        onClick={onPlaceOrder}
-                        className={
-                            clsx({
-                                'btn btn-primary w-full': !isPlacingOrder,
+                <div className="relative">
+                    <div className="gap-0.5 mt-8 md:mt-8 hidden md:flex">
+                        <button onClick={onPlaceOrder} className={clsx(
+                            {
+                                'btn border-none rounded-md bg-indigo-600 hover:bg-indigo-500 focus:outline-none transition text-white uppercase w-full md:max-w-md': !isPlacingOrder,
                                 'btn btn-disabled w-full': isPlacingOrder,
-                            })
-                        }
-                    >
-                        Finalizar pedido
-                    </button>
+                            }
+                        )}>
+                            Finalizar Pedido
+                        </button>
+                    </div>
+                    <div className="fixed bottom-0 left-0 right-0 md:hidden">
+                        <button onClick={onPlaceOrder} className="btn  border-none rounded-none bg-indigo-600 hover:bg-indigo-500 focus:outline-none transition text-white uppercase w-full">
+                            Finalizar Pedido
+                        </button>
+                    </div>
                 </div>
 
             </div>

@@ -80,7 +80,7 @@ export default async function OrderByIdPage({ params }: Props) {
 
                     {/* RESUMEN ORDEN */}
 
-                    <div className="bg-white rounded-xl shadow-xl p-7">
+                    <div className="p-7">
                         <h2 className="text-2xl mb-2">Direccion de entrega</h2>
                         <div className="mb-10">
                             <p className="text-xl">{addres.user.name}</p>
@@ -111,9 +111,11 @@ export default async function OrderByIdPage({ params }: Props) {
 
                         <div className="mt-5 mb-2 w-full">
 
-                            <BotonPago amount={5000} buy_order={id} session_id="erik"/>
+                            <BotonPago amount={5000} buy_order={id} session_id="erik" />
 
                         </div>
+
+                        
 
                     </div>
 
