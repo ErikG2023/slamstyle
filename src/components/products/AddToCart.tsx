@@ -22,8 +22,8 @@ export const AddToCart = ({ product }: Props) => {
         setposted(true);
         if (!size) {
             toast.error("Para agregar seleccione una talla", {
-                position: "bottom-left",
-                autoClose: 5000,
+                position: "top-left",
+                autoClose: 2000,
                 hideProgressBar: false,
                 closeOnClick: true,
                 pauseOnHover: true,
@@ -48,8 +48,8 @@ export const AddToCart = ({ product }: Props) => {
         setquantity(1);
         setsize(undefined);
         toast.success("Añadido al carrito", {
-            position: "bottom-left",
-            autoClose: 5000,
+            position: "top-left",
+            autoClose: 2000,
             hideProgressBar: false,
             closeOnClick: true,
             pauseOnHover: true,

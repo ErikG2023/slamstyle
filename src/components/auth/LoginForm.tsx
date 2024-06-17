@@ -25,8 +25,8 @@ const LoginForm = () => {
                 then((data) => {
                     if (data?.error) {
                         toast.error(data?.error, {
-                            position: "bottom-left",
-                            autoClose: 5000,
+                            position: "top-left",
+                            autoClose: 2000,
                             hideProgressBar: false,
                             closeOnClick: true,
                             pauseOnHover: true,
@@ -36,7 +36,7 @@ const LoginForm = () => {
                         });
                     } else if (data?.twoFactor) {
                         toast.success("Codigo enviado", {
-                            position: "bottom-left",
+                            position: "top-left",
                             autoClose: 5000,
                             hideProgressBar: false,
                             closeOnClick: true,
@@ -49,8 +49,8 @@ const LoginForm = () => {
                         setTwoFactor(data.twoFactor); // Guarda el estado para manejar el código de 2FA
                     } else if (data?.success) {
                         toast.success(data?.success, {
-                            position: "bottom-left",
-                            autoClose: 5000,
+                            position: "top-left",
+                            autoClose: 2000,
                             hideProgressBar: false,
                             closeOnClick: true,
                             pauseOnHover: true,
@@ -65,8 +65,8 @@ const LoginForm = () => {
                     }
                 })
                 .catch(() => toast.error("Something went wrong", {
-                    position: "bottom-left",
-                    autoClose: 5000,
+                    position: "top-left",
+                    autoClose: 2000,
                     hideProgressBar: false,
                     closeOnClick: true,
                     pauseOnHover: true,

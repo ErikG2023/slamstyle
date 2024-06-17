@@ -15,7 +15,7 @@ export const ProductsInCartCheck = () => {
     }, []);
 
     if (!loaded) {
-        return <p>Loading.....</p>
+        return <div className="flex justify-center items-center"><span className="loading loading-spinner loading-lg"></span></div>
     }
 
     return (

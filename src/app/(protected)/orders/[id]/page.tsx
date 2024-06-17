@@ -1,6 +1,7 @@
 import { getOrderById } from "@/actions/order/get-order-by-id";
 import { BotonPago } from "@/components/BotonPago";
 import { Title } from "@/components/Title";
+import { titleFont } from "@/config/fonts";
 import { currencyFormat } from "@/utils";
 import clsx from "clsx";
 import Image from "next/image";
@@ -29,10 +30,15 @@ export default async function OrderByIdPage({ params }: Props) {
 
 
     return (
-        <div className="flex justify-center items-center mb-72 px-10 sm:px-0">
+
+
+        <div className="flex justify-center items-center mb-72 md:px-10 px-2">
 
             <div className="flex flex-col w-[1000px]">
-                <Title title={`Orden #${id}`} />
+                {/* <Title title={`Orden #${id}`} /> */}
+                <h1 className={`${titleFont.className} antialiased text-md sm:text-4xl font-semibold mb-4`}>
+                    {`Orden #${id}`}
+                </h1>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-10">
                     {/* CARRITO */}
                     <div className="flex flex-col mt-5">
@@ -80,48 +86,53 @@ export default async function OrderByIdPage({ params }: Props) {
 
                     {/* RESUMEN ORDEN */}
 
-                    <div className="p-7">
-                        <h2 className="text-2xl mb-2">Direccion de entrega</h2>
-                        <div className="mb-10">
-                            <p className="text-xl">{addres.user.name}</p>
-                            <p>{addres.address}</p>
-                            <p>{addres.city.name}</p>
+                    <div>
+                        <div className="md:p-7">
+                            <h2 className="text-2xl mb-2">Direccion de entrega</h2>
+                            <div className="mb-10">
+                                <p className="text-xl">{addres.user.name}</p>
+                                <p>{addres.address}</p>
+                                <p>{addres.city.name}</p>
+                            </div>
+
+                            <div className="w-full h-0.5 rounded bg-gray-200 mb-10" />
+
+                            <h2 className="text-2xl mb-2">Resumen pedido</h2>
+
+                            <div className="grid grid-cols-2">
+
+                                <span>N° Productos</span>
+                                <span className="text-right">{order?.itemsInOrder === 1 ? "1 artículo" : `${order?.itemsInOrder} artículos`}</span>
+
+                                <span>Subtotal</span>
+                                <span className="text-right">$ {order?.subTotal}</span>
+
+                                <span>Iva</span>
+                                <span className="text-right">{order?.iva} %</span>
+
+
+                                <span className="text-xl md:text-2xl mt-5 font-semibold">Total a Pagar:</span>
+                                <span className="mt-5 text-xl md:text-2xl text-right font-semibold"> {currencyFormat(order?.total as number)}</span>
+
+                            </div>
+
+                            <div className="mt-5 mb-2 w-full">
+
+                                <BotonPago amount={5000} buy_order={id} session_id="erik" />
+
+                            </div>
+
+
+
                         </div>
-
-                        <div className="w-full h-0.5 rounded bg-gray-200 mb-10" />
-
-                        <h2 className="text-2xl mb-2">Resumen pedido</h2>
-
-                        <div className="grid grid-cols-2">
-
-                            <span>N° Productos</span>
-                            <span className="text-right">{order?.itemsInOrder === 1 ? "1 artículo" : `${order?.itemsInOrder} artículos`}</span>
-
-                            <span>Subtotal</span>
-                            <span className="text-right">$ {order?.subTotal}</span>
-
-                            <span>Iva</span>
-                            <span className="text-right">{order?.iva} %</span>
-
-
-                            <span className="text-xl md:text-2xl mt-5 font-semibold">Total a Pagar:</span>
-                            <span className="mt-5 text-xl md:text-2xl text-right font-semibold"> {currencyFormat(order?.total as number)}</span>
-
-                        </div>
-
-                        <div className="mt-5 mb-2 w-full">
-
-                            <BotonPago amount={5000} buy_order={id} session_id="erik" />
-
-                        </div>
-
-                        
-
                     </div>
+
 
 
                 </div>
             </div>
         </div>
+
+
     );
 }

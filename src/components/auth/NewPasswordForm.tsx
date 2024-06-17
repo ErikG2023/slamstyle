@@ -28,8 +28,8 @@ const NewPasswordForm = () => {
                     if (data?.error) {
                         setError(data.error);
                         toast.error(data.error, {
-                            position: "bottom-left",
-                            autoClose: 5000,
+                            position: "top-left",
+                            autoClose: 2000,
                             hideProgressBar: false,
                             closeOnClick: true,
                             pauseOnHover: true,
@@ -40,8 +40,8 @@ const NewPasswordForm = () => {
                     } else {
                         setSuccess(data?.success || null);
                         toast.success(data?.success, {
-                            position: "bottom-left",
-                            autoClose: 5000,
+                            position: "top-left",
+                            autoClose: 2000,
                             hideProgressBar: false,
                             closeOnClick: true,
                             pauseOnHover: true,
@@ -57,8 +57,8 @@ const NewPasswordForm = () => {
                 .catch((error) => {
                     setError("Something went wrong");
                     toast.error("Something went wrong", {
-                        position: "bottom-left",
-                        autoClose: 5000,
+                        position: "top-left",
+                        autoClose: 2000,
                         hideProgressBar: false,
                         closeOnClick: true,
                         pauseOnHover: true,

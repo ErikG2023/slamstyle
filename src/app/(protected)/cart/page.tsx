@@ -8,7 +8,7 @@ export default function CartPage() {
     // redirect('/empty');
 
     return (
-        <div className="flex justify-center items-center mb-72 px-10 sm:px-0">
+        <div className="flex justify-center items-center mb-72 md:px-10 px-2">
 
             <div className="flex flex-col w-[1000px]">
                 <Title title="Carrito" />
@@ -16,7 +16,7 @@ export default function CartPage() {
                     {/* CARRITO */}
                     <div className="flex flex-col">
                         {/* <span className="text-xl mb-4">Agregar mas items</span> */}
-                        <Link href="/" className="btn  mb-5" >
+                        <Link href="/" className="btn mb-7" >
                             Agregar mas Productos
                         </Link>
 
@@ -28,7 +28,7 @@ export default function CartPage() {
 
                     {/* RESUMEN ORDEN */}
 
-                    <div className=" rounded-xl p-7 h-fit">
+                    <div className=" rounded-xl md:p-7 h-fit">
                         <h2 className="text-2xl mb-2">Resumen pedido</h2>
 
                         <OrderSummary />

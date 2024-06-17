@@ -27,8 +27,8 @@ const RegisterForm = () => {
             if (response.error) {
                 setError(response.error);
                 toast.error(response.error, {
-                    position: "bottom-left",
-                    autoClose: 5000,
+                    position: "top-left",
+                    autoClose: 2000,
                     hideProgressBar: false,
                     closeOnClick: true,
                     pauseOnHover: true,
@@ -39,8 +39,8 @@ const RegisterForm = () => {
             } else {
                 setSuccess(response.success || null);
                 toast.success(response.success, {
-                    position: "bottom-left",
-                    autoClose: 5000,
+                    position: "top-left",
+                    autoClose: 2000,
                     hideProgressBar: false,
                     closeOnClick: true,
                     pauseOnHover: true,

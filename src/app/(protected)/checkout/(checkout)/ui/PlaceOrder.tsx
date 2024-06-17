@@ -62,11 +62,11 @@ export const PlaceOrder = () => {
     }
 
     if (!loaded) {
-        return <p>Cargando...</p>
+        return <div className="flex justify-center items-center"><span className="loading loading-spinner loading-lg"></span></div>
     }
     return (
         <div>
-            <div className="p-7">
+            <div className="md:p-7">
                 <h2 className="text-2xl mb-2">Direccion de entrega</h2>
                 {selectedAddress && (
                     <div className="mb-10">
