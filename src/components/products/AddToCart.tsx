@@ -5,6 +5,7 @@ import { useState } from "react";
 import { QuantitySelector } from "./QuantitySelector";
 import { toast } from "react-toastify";
 import { useCartStore } from "@/store/cart-store";
+import { showToast } from "../Toast";
 
 interface Props {
     product: ProductInterface;
@@ -21,16 +22,7 @@ export const AddToCart = ({ product }: Props) => {
     const addToCart = () => {
         setposted(true);
         if (!size) {
-            toast.error("Para agregar seleccione una talla", {
-                position: "top-left",
-                autoClose: 2000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "dark",
-            });
+            showToast("warning", <p>Primero debe seleccionar una talla!</p>)
             return;
         }
 
@@ -47,16 +39,7 @@ export const AddToCart = ({ product }: Props) => {
         setposted(false);
         setquantity(1);
         setsize(undefined);
-        toast.success("Añadido al carrito", {
-            position: "top-left",
-            autoClose: 2000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-        });
+        showToast("success", <p>Añadido al carrito!</p>)
 
     };
     return (

@@ -27,8 +27,8 @@ export const OrderSummary = () => {
             <span>Iva (19%)</span>
             <span className="text-right">{currencyFormat(iva)}</span>
 
-            <span className="text-md md:text-2xl mt-5 font-semibold">Total a Pagar:</span>
-            <span className="mt-5 text-md md:text-2xl text-right font-semibold"> {currencyFormat(total)}</span>
+            <span className="text-xl md:text-2xl mt-5 font-semibold">Total a Pagar:</span>
+            <span className="mt-5 text-xl md:text-2xl text-right font-semibold"> {currencyFormat(total)}</span>
 
         </div>
     )

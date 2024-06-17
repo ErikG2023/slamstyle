@@ -8,6 +8,7 @@ import { Register } from '@/actions/register';
 import clsx from 'clsx';
 import SocialButton from './SocialButton';
 import Link from 'next/link';
+import { showToast } from '../Toast';
 
 const RegisterForm = () => {
     const [isPending, startTransition] = useTransition();
@@ -26,28 +27,10 @@ const RegisterForm = () => {
             const response = await Register(data);
             if (response.error) {
                 setError(response.error);
-                toast.error(response.error, {
-                    position: "top-left",
-                    autoClose: 2000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "dark",
-                });
+                showToast("error", <p>{response.error}</p>);
             } else {
                 setSuccess(response.success || null);
-                toast.success(response.success, {
-                    position: "top-left",
-                    autoClose: 2000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "dark",
-                });
+                showToast("success", <p>{response.success}</p>);
             }
         });
     };

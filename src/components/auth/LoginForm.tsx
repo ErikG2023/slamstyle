@@ -9,6 +9,7 @@ import { Login } from '@/actions/login';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import SocialButton from './SocialButton';
+import { showToast } from '../Toast';
 
 const LoginForm = () => {
     const { register, handleSubmit, formState: { errors } } = useForm<LoginFormInputs>({
@@ -24,56 +25,21 @@ const LoginForm = () => {
             Login(values, callbackUrl).
                 then((data) => {
                     if (data?.error) {
-                        toast.error(data?.error, {
-                            position: "top-left",
-                            autoClose: 2000,
-                            hideProgressBar: false,
-                            closeOnClick: true,
-                            pauseOnHover: true,
-                            draggable: true,
-                            progress: undefined,
-                            theme: "dark",
-                        });
+                        showToast("error", <p>{data?.error}</p>);
                     } else if (data?.twoFactor) {
-                        toast.success("Codigo enviado", {
-                            position: "top-left",
-                            autoClose: 5000,
-                            hideProgressBar: false,
-                            closeOnClick: true,
-                            pauseOnHover: true,
-                            draggable: true,
-                            progress: undefined,
-                            theme: "dark",
-                        });
-                        
+                        showToast("success", <p>Codigo enviado</p>);
                         setTwoFactor(data.twoFactor); // Guarda el estado para manejar el código de 2FA
                     } else if (data?.success) {
-                        toast.success(data?.success, {
-                            position: "top-left",
-                            autoClose: 2000,
-                            hideProgressBar: false,
-                            closeOnClick: true,
-                            pauseOnHover: true,
-                            draggable: true,
-                            progress: undefined,
-                            theme: "dark",
-                        });
+                        showToast("success", <p>{data?.success}</p>);
                         if (data.redirectTo) {
                             // Redirige a la página deseada después del inicio de sesión
                             window.location.href = data.redirectTo
                         }
                     }
                 })
-                .catch(() => toast.error("Something went wrong", {
-                    position: "top-left",
-                    autoClose: 2000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "dark",
-                }));
+                .catch(() =>
+                    showToast("error", <p>Algo salio mal!</p>)
+                );
         });
     };
 

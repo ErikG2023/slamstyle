@@ -11,6 +11,7 @@ import { getRegiones } from "@/actions/address/get-regiones";
 import { getCiudadesByRegionId } from "@/actions/address/get-ciudad-by-region";
 import { saveAddress } from "@/actions/address/save-addres";
 import { Title } from "./Title";
+import { showToast } from "./Toast";
 
 // Definir el esquema de validación con Zod
 const schema = z.object({
@@ -115,12 +116,14 @@ export const AddressForm = () => {
             console.log(resp);
             if (resp.status) {
                 // toast.success(resp.message);
+                showToast("success",<p>{resp.message}</p>)
                 router.push("/checkout/address");
             }
         } catch (error) {
             setLoading(false);
             console.error("Network Error:", error);
             // toast.error("Its seems something is wrong with your Network");
+            showToast("error",<p>Its seems something is wrong with your Network</p>)
         }
     };
 
@@ -267,7 +270,7 @@ export const AddressForm = () => {
                     type="submit"
                     className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center"
                 >
-                    Submit
+                    Guardar
                 </button>
             </form>
         </div>

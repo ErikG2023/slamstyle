@@ -5,6 +5,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { toast } from 'react-toastify';
 import { ResetPasswordFormInputs, ResetPasswordSchema } from '@/schema';
 import { reset } from '@/actions/reset';
+import { showToast } from '../Toast';
 
 const ResetPasswordForm = () => {
     const [isPending, startTransition] = useTransition();
@@ -23,28 +24,10 @@ const ResetPasswordForm = () => {
             const response = await reset(data);
             if (response.error) {
                 setError(response.error);
-                toast.error(response.error, {
-                    position: "top-left",
-                    autoClose: 2000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "dark",
-                });
+                showToast("error", <p>{response.error}</p>);
             } else {
                 setSuccess(response.success || null);
-                toast.success(response.success, {
-                    position: "top-left",
-                    autoClose: 2000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "dark",
-                });
+                showToast("success", <p>{response.success}</p>);
             }
         });
     };

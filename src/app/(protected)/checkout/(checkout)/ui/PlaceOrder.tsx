@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import { useAddressStore } from "@/store/address-store";
 import { useCartStore } from "@/store/cart-store";
 import { placeOrder } from "@/actions/order/place-order";
+import { showToast } from "@/components/Toast";
 
 export const PlaceOrder = () => {
     const router = useRouter();
@@ -45,7 +46,7 @@ export const PlaceOrder = () => {
         console.log({ res });
 
         if (!res.ok) {
-            // toast.error(res.message);
+            showToast("error", <p>{res.message}</p>)
             setIsPlacingOrder(false)
             return;
         }

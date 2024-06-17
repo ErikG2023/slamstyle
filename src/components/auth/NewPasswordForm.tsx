@@ -6,6 +6,7 @@ import { toast } from 'react-toastify';
 import { NewPasswordFormInputs, NewPasswordSchema } from '@/schema';
 import { newPassword } from '@/actions/new-password';
 import { useRouter, useSearchParams } from 'next/navigation';
+import { showToast } from '../Toast';
 
 const NewPasswordForm = () => {
     const searchParams = useSearchParams();
@@ -27,28 +28,10 @@ const NewPasswordForm = () => {
                 .then((data) => {
                     if (data?.error) {
                         setError(data.error);
-                        toast.error(data.error, {
-                            position: "top-left",
-                            autoClose: 2000,
-                            hideProgressBar: false,
-                            closeOnClick: true,
-                            pauseOnHover: true,
-                            draggable: true,
-                            progress: undefined,
-                            theme: "dark",
-                        });
+                        showToast("error", <p>{data.error}</p>);
                     } else {
                         setSuccess(data?.success || null);
-                        toast.success(data?.success, {
-                            position: "top-left",
-                            autoClose: 2000,
-                            hideProgressBar: false,
-                            closeOnClick: true,
-                            pauseOnHover: true,
-                            draggable: true,
-                            progress: undefined,
-                            theme: "dark",
-                        });
+                        showToast("success", <p>{data?.success}</p>);
                         setTimeout(() => {
                             router.push("/auth/login");
                         }, 1000);
@@ -56,16 +39,7 @@ const NewPasswordForm = () => {
                 })
                 .catch((error) => {
                     setError("Something went wrong");
-                    toast.error("Something went wrong", {
-                        position: "top-left",
-                        autoClose: 2000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
-                        progress: undefined,
-                        theme: "dark",
-                    });
+                    showToast("error", <p>Algo salio mal</p>);
                 });
         });
     };
